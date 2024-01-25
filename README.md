@@ -27,7 +27,7 @@ There is a .env file that needs modifying to your use case. this file goes in th
 and for the PMM (Plex Meta Manager) config files: <br>
     /home/georgew/docker/pmm/movies.yaml <br>
     /home/georgew/docker/pmm/config.yaml <br>
-<br>    
+  
 The actual configuring each application to your liking is up to you. I have provided links for each service:
 <br>
 Self Hosted Streaming service: <br>
