@@ -3,6 +3,7 @@ you will only have to change whats in this file and add some DNS entries. If you
 watchtower apps these will be provided for you to download. Dont forget the .env file.
 
 I use network_mode: host for plex, if you don't want too then you can change.
+You will need to uncomment (remove the # sign) the ports.
 There will be two lines in plex.yaml to change/remove: <br>
 1. caddy.reverse_proxy: host.docker.internal:32400 change to caddy.reverse_proxy: "{{upstreams 32400}}"
 2. network_mode: host change to <br>
