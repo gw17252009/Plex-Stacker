@@ -170,27 +170,27 @@ webhooks:
   changes:
   delete:
 plex:
-  url: http://192.168.7.76:32400
-  token: mKXFTLz-5SPCTtXKb-3p
+  url:
+  token:
   timeout: 60
   clean_bundles: false
   empty_trash: false
   optimize: false
   db_cache:
 tmdb:
-  apikey: 95b24c9c6a8785f40c09878114df4ca7
+  apikey: 
   language: en
   cache_expiration: 60
   region:
 tautulli:
-  url: http://192.168.7.76:8181
-  apikey: 32f478be0c69453e913789be04e4530a
+  url: 
+  apikey: 
 radarr:
-  url: http://192.168.7.76:7878
-  token: aaf5114e8e0f43119b166fcb85dfb9ed
+  url: 
+  token: 
   add_missing: false
   add_existing: false
-  root_folder_path: /mnt/media/
+  root_folder_path: 
   monitor: true
   availability: announced
   quality_profile: HD-1080p
@@ -201,11 +201,11 @@ radarr:
   upgrade_existing: false
   ignore_cache: false
 sonarr:
-  url: http://192.168.7.76:8989
-  token: f2dcbed402004203947af5c9e20e8129
+  url: 
+  token: 
   add_missing: false
   add_existing: false
-  root_folder_path: /mnt/TVShows,/mnt/TVShows1
+  root_folder_path: 
   monitor: all
   quality_profile: HD-1080p
   language_profile: English
