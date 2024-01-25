@@ -1,0 +1,110 @@
+---
+networks: # docker network create caddy
+  caddy:
+    external: true
+
+x-environment: &default
+  TZ: $TZ
+  PUID: $PUID
+  PGID: $PGID
+
+services:
+#### Media streamer ####
+  plex:
+    container_name: plex
+    environment:
+      <<: *default
+      VERSION: docker
+      NVIDIA_VISIBLE_DEVICES: all # Only if you use a Nvidia GPU.
+      NVIDIA_DRIVER_CAPABILITIES: all # Only if you use a Nvidia GPU.
+    image: lscr.io/linuxserver/plex
+    labels:
+      caddy: plex.$DOMAIN
+      caddy.reverse_proxy: host.docker.internal:32400 # change if desired
+    network_mode: host # change if desired
+#    ports:
+#      - "32400:32400"
+#      - "1900:1900/udp"
+#      - "3005:3005"
+#      - "5353:5353/udp"
+#      - "8324:8324"
+#      - "32410:32410/udp"
+#      - "32412:32412/udp"
+#      - "32413:32413/udp"
+#      - "32414:32414/udp"
+#      - "32469:32469"
+    restart: unless-stopped
+    runtime: nvidia  # Only if you use a Nvidia GPU.
+    volumes:
+      - "<path/for/config>/plex:/config" # change
+      - "<path/for/media>:/data/media" # change
+      - "<path/for/transcode>:/transcode" # change
+  #### Plex Analytics ####
+  tautulli:
+    container_name: tautulli
+    environment:
+      <<: *default
+      DOCKER_MODS: ghcr.io/gilbn/theme.park:tautulli
+      TP_THEME: dracula
+    image: lscr.io/linuxserver/tautulli
+    labels:
+      caddy: tautulli.$DOMAIN
+      caddy.reverse_proxy: "{{upstreams 8181}}"
+    networks:
+      - caddy
+    ports:
+      - "8181:8181"
+    restart: unless-stopped
+    volumes:
+      - "<path/for/config>/tautulli:/config" # change
+#### Plex Metadata & Collections ####
+  plex-meta-manager:
+    container_name: plex-meta-manager
+    environment:
+      <<: *default
+      PMM_CONFIG: /config/config.yml #optional
+      PMM_TIME: 03:00 #optional
+      PMM_RUN: "False" #optional
+      PMM_TEST: "False" #optional
+      PMM_NO_MISSING: "False" #optional
+    image: meisnate12/plex-meta-manager
+    network_mode: host
+    restart: unless-stopped
+    volumes:
+      - "<path/for/config>/pmm/config:/config:rw" # change
+#### Missing Movie Finder ####
+  gaps:
+    container_name: gaps
+    environment:
+      <<: *default
+    expose:
+      - "32400"
+    image: housewrecker/gaps:latest
+    labels:
+      caddy: gaps.$DOMAIN
+      caddy.reverse_proxy: "{{upstreams 8484}}"
+    networks:
+      - caddy
+    ports:
+      - 8484:8484
+    restart: unless-stopped
+    volumes:
+      - "<path/for/config>/gaps:/usr/data"
+#### Display like a Cinema advertisement ####
+  posterr:
+    container_name: posterr
+    environment:
+      TZ: $TZ
+      BASEPATH: ""
+    image: petersem/posterr
+    labels:
+      caddy: posterr.$DOMAIN
+      caddy.reverse_proxy: "{{upstreams 9876}}"
+    networks:
+      - caddy
+    ports:
+      - 9876:3000
+    restart: unless-stopped
+    volumes:
+      - "<path/for/config>config:/usr/src/app/config"
+      - "<path/for>/custom:/usr/src/app/public/custom"

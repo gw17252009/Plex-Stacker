@@ -1,0 +1,44 @@
+---
+networks: # docker network create caddy
+  caddy:
+    external: true
+
+x-environment: &default
+  TZ: $TZ
+  PUID: $PUID
+  PGID: $PGID
+
+services:
+  #### Reverse proxy ####
+  caddy:
+    container_name: caddy
+    environment:
+      <<: *default
+      CADDY_INGRESS_NETWORKS: caddy
+    extra_hosts:
+      - host.docker.internal:host-gateway  # this line allows you to use a web address for a service using network_mode: host
+    image: lucaslorentz/caddy-docker-proxy:ci-alpine
+    networks:
+      - caddy
+    ports:
+      - 80:80
+      - 443:443
+    restart: unless-stopped
+    volumes:
+      - "<path/for/config>/caddy_data:/data" # change
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+#### Docker updater ####
+  watchtower:
+    container_name: watchtower
+    environment:
+      <<: *default
+      WATCHTOWER_CLEANUP: true
+      WATCHTOWER_REMOVE_VOLUMES: false
+      WATCHTOWER_INCLUDE_STOPPED: true
+      WATCHTOWER_POLL_INTERVAL: 53200
+    image: containrrr/watchtower
+    networks:
+      - caddy
+    restart: unless-stopped
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"      
