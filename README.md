@@ -24,12 +24,12 @@ If you are already using the ports for other apps change ONLY the left side of X
 There is a .env file that needs modifying to your use case. this file goes in the the docker folder where your compose file resides. For example I put my compose files in /home/georgew/docker, so tree looks like this: <br>
     /home/georgew/docker/plex.yaml <br>
     /home/georgew/docker/.env <br>
-and for the PMM (Plex Meta Manager) config files:
+and for the PMM (Plex Meta Manager) config files: <br>
     /home/georgew/docker/pmm/movies.yaml <br>
     /home/georgew/docker/pmm/config.yaml <br>
-    
+<br>    
 The actual configuring each application to your liking is up to you. I have provided links for each service:
-
+<br>
 Self Hosted Streaming service: <br>
   Plex: <br>
     https://www.plex.tv/ <br>
