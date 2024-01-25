@@ -1,0 +1,220 @@
+libraries:
+  Movies:
+    metadata_path:
+    - pmm: basic
+    - pmm: seasonal
+    overlay_path:
+    - remove_overlays: false
+    - pmm: resolution
+    - pmm: audio_codec
+    - pmm: video_format
+    - pmm: ratings
+    template_variables:
+      rating1: audience
+      rating1_image: imdb
+      rating1_font_size: 55
+      back_color: '#00000075'
+      horizontal_position: right
+      vertical_position: bottom
+  Horror:
+    metadata_path:
+    - pmm: basic
+    - pmm: seasonal
+    overlay_path:
+    - remove_overlays: false
+    - pmm: resolution
+    - pmm: audio_codec
+    - pmm: video_format
+    - pmm: ratings
+    template_variables:
+      rating1: audience
+      rating1_image: imdb
+      rating1_font_size: 55
+      back_color: '#00000075'
+      horizontal_position: right
+      vertical_position: bottom
+  Animated:
+    metadata_path:
+    - pmm: basic
+    - pmm: seasonal
+    overlay_path:
+    - remove_overlays: false
+    - pmm: resolution
+    - pmm: audio_codec
+    - pmm: video_format
+    - pmm: ratings
+    template_variables:
+      rating1: audience
+      rating1_image: imdb
+      rating1_font_size: 55
+      back_color: '#00000075'
+      horizontal_position: right
+      vertical_position: bottom
+  Documentaries:
+    metadata_path:
+    - pmm: basic
+    overlay_path:
+    - remove_overlays: false
+    - pmm: resolution
+    - pmm: audio_codec
+    - pmm: video_format
+    - pmm: ratings
+    template_variables:
+      rating1: audience
+      rating1_image: imdb
+      rating1_font_size: 55
+      back_color: '#00000075'
+      horizontal_position: right
+      vertical_position: bottom
+  TV Shows:
+    metadata_path:
+    - pmm: basic
+#    - pmm: imdb
+    overlay_path:
+    - remove_overlays: false
+    - pmm: resolution
+    - pmm: audio_codec
+    - pmm: video_format
+    - pmm: ratings
+    template_variables:
+      rating1: audience
+      rating1_image: imdb
+      rating1_font_size: 55
+      back_color: '#00000075'
+      horizontal_position: right
+      vertical_position: bottom
+  Animated TV Shows:
+    metadata_path:
+    - pmm: basic
+#    - pmm: imdb
+    overlay_path:
+    - remove_overlays: false
+    - pmm: resolution
+    - pmm: audio_codec
+    - pmm: video_format
+    - pmm: ratings
+    template_variables:
+      rating1: audience
+      rating1_image: imdb
+      rating1_font_size: 55
+      back_color: '#00000075'
+      horizontal_position: right
+      vertical_position: bottom
+  TV Docu Series:
+    metadata_path:
+    - pmm: basic
+#    - pmm: imdb
+    overlay_path:
+    - remove_overlays: false
+    - pmm: resolution
+    - pmm: audio_codec
+    - pmm: video_format
+    - pmm: ratings
+    template_variables:
+      rating1: audience
+      rating1_image: imdb
+      rating1_font_size: 55
+      back_color: '#00000075'
+      horizontal_position: right
+      vertical_position: bottom
+playlist_files:
+- pmm: playlist
+settings:
+  cache: true
+  cache_expiration: 60
+  asset_directory: config/assets
+  asset_folders: true
+  asset_depth: 0
+  create_asset_folders: false
+  prioritize_assets: false
+  dimensional_asset_rename: false
+  download_url_assets: false
+  show_missing_season_assets: false
+  show_missing_episode_assets: false
+  show_asset_not_needed: true
+  sync_mode: append
+  minimum_items: 1
+  default_collection_order:
+  delete_below_minimum: true
+  delete_not_scheduled: false
+  run_again_delay: 2
+  missing_only_released: false
+  only_filter_missing: false
+  show_unmanaged: true
+  show_unconfigured: true
+  show_filtered: false
+  show_options: false
+  show_missing: true
+  show_missing_assets: true
+  save_report: false
+  tvdb_language: eng
+  ignore_ids:
+  ignore_imdb_ids:
+  item_refresh_delay: 0
+  playlist_sync_to_user: all
+  playlist_exclude_users:
+  playlist_report: false
+  verify_ssl: true
+  custom_repo:
+  check_nightly: false
+  run_order:
+  - operations
+  - metadata
+  - collections
+  - overlays
+webhooks:
+  error:
+  version:
+  run_start:
+  run_end:
+  changes:
+  delete:
+plex:
+  url: http://192.168.7.76:32400
+  token: mKXFTLz-5SPCTtXKb-3p
+  timeout: 60
+  clean_bundles: false
+  empty_trash: false
+  optimize: false
+  db_cache:
+tmdb:
+  apikey: 95b24c9c6a8785f40c09878114df4ca7
+  language: en
+  cache_expiration: 60
+  region:
+tautulli:
+  url: http://192.168.7.76:8181
+  apikey: 32f478be0c69453e913789be04e4530a
+radarr:
+  url: http://192.168.7.76:7878
+  token: aaf5114e8e0f43119b166fcb85dfb9ed
+  add_missing: false
+  add_existing: false
+  root_folder_path: /mnt/media/
+  monitor: true
+  availability: announced
+  quality_profile: HD-1080p
+  tag:
+  search: false
+  radarr_path:
+  plex_path:
+  upgrade_existing: false
+  ignore_cache: false
+sonarr:
+  url: http://192.168.7.76:8989
+  token: f2dcbed402004203947af5c9e20e8129
+  add_missing: false
+  add_existing: false
+  root_folder_path: /mnt/TVShows,/mnt/TVShows1
+  monitor: all
+  quality_profile: HD-1080p
+  language_profile: English
+  series_type: standard
+  season_folder: true
+  tag:
+  search: false
+  cutoff_search: false
+  sonarr_path:
+  plex_path:
+  upgrade_existing: false
+  ignore_cache: false
